@@ -23,13 +23,12 @@ def video_download(video_id: str):
     v_file = open(video_id + '.mp4', 'wb')
 
     v_url = v_formats[0].get('url')
-    # v_content = cl.get(v_formats[0].get('url')).content
+    
     size = int(requests.head(v_url) \
                .headers.get('Content-Length'))
 
     print('Video Size:', round(size / 1024 / 1024), 'mb')
-    # print(r.headers)
-    # print(r.text)
+    
     print('Parsing video...')
     with requests.get(v_url, stream=True) as request:
         request.raise_for_status()
